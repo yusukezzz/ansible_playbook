@@ -1,0 +1,11 @@
+---
+newrelic_license: YOUR_LICENSE_HERE
+user_name: vagrant
+# python -c 'import crypt; print crypt.crypt("vagrant", "$1$salt$")'
+user_pass: $1$salt$1Xc76uCZbF9w
+ssh_port: 22
+ssh_files:
+  - id_rsa
+  - id_rsa.pub
+authorized_public_keys:
+  - id_rsa.pub

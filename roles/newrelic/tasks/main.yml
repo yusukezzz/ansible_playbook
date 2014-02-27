@@ -1,0 +1,8 @@
+---
+- name: enable newrelic repo
+  yum: name=http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm state=present
+- name: install newrelic
+  action: yum name=newrelic-sysmond state=present
+- name: config newrelic-sysmond
+  template: src=nrsysmond.cfg.j2 dest=/etc/newrelic/nrsysmond.cfg
+  notify: restart newrelic-sysmond

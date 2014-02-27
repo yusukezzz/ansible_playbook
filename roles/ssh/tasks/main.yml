@@ -1,0 +1,16 @@
+---
+- name: copy ssh files
+  copy: src=~/.ssh/{{ item }} dest=/home/vagrant/.ssh/{{ item }} owner={{ user_name }} group={{ user_name }} mode=700
+  with_items:
+    ssh_files
+- name: add ssh authorized keys
+  authorized_key: >
+    user={{ user_name }}
+    key="{{ lookup('file', '~/.ssh/' + item) }}"
+    state=present
+  with_items:
+    authorized_public_keys
+- name: copy sshd_config
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config backup=yes owner=root group=root mode=600
+  notify:
+    - restart sshd

@@ -1,0 +1,5 @@
+---
+- name: install redis
+  action: yum name=redis state=present enablerepo=remi
+  notify:
+    - restart redis

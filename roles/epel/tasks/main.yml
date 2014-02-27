@@ -1,0 +1,3 @@
+---
+- name: enable epel repo
+  yum: name=http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
