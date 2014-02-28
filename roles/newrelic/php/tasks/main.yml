@@ -1,0 +1,22 @@
+---
+- name: install newrelic php agent
+  action: yum name=newrelic-php5 state=present
+  notify:
+    - restart nginx
+    - restart php-fpm
+    - restart newrelic-sysmond
+- name: check newrelic-install executed
+  command: ls /usr/lib64/php/modules/newrelic.so
+  register: result
+  ignore_errors: True
+- name: exec newrelic-install
+  shell: sh -c 'echo {{ newrelic_license }} | newrelic-install install'
+  when: result|failed
+- name: php.ini newrelic enable
+  lineinfile: dest=/etc/php.ini
+              regexp=''
+              insertafter=EOF
+              line='newrelic.license="{{ newrelic_license }}"'
+  notify:
+    - restart nginx
+    - restart php-fpm
