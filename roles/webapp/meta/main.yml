@@ -1,7 +1,8 @@
 ---
 dependencies:
+  - { role: php/fpm }
+  - { role: php }
   - { role: mariadb }
   - { role: nginx }
-  - { role: php }
   - { role: newrelic/php }
   - { role: memcached }

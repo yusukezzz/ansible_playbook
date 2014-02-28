@@ -6,7 +6,6 @@
     - php-cli
     - php-common
     - php-devel
-    - php-fpm
 - name: install php modules
   action: yum name={{ item }} state=present enablerepo=remi,remi-php55
   with_items:
@@ -17,21 +16,6 @@
     - php-xml
     - php-opcache
     - php-pecl-memcached
-- name: config php-fpm
-  copy: src=php-fpm.conf dest=/etc/php-fpm.conf
-  notify:
-    - restart php-fpm
-- name: config php-fpm pool
-  copy: src=www.conf dest=/etc/php-fpm.d/www.conf
-  notify:
-    - restart php-fpm
-- name: change group session directory
-  command: chown root:nginx /var/lib/php/{{ item }}
-  with_items:
-    - session
-    - wsdlcache
-  notify:
-    - restart php-fpm
 - name: install composer
   shell:
     curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer
