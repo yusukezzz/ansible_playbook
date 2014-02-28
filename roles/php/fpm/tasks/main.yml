@@ -10,9 +10,6 @@
   notify:
     - restart php-fpm
 - name: change group session directory
-  command: chown root:nginx /var/lib/php/{{ item }}
-  with_items:
-    - session
-    - wsdlcache
+  file: path=/var/lib/php/session state=directory owner=nginx group=nginx mode=755
   notify:
     - restart php-fpm
