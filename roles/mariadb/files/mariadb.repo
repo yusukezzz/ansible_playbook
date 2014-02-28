@@ -1,8 +1,8 @@
-# MariaDB 5.5 CentOS repository list - created 2013-11-13 04:45 UTC
+# MariaDB 10.0 CentOS repository list - created 2014-02-28 02:51 UTC
 # http://mariadb.org/mariadb/repositories/
 [mariadb]
 name = MariaDB
-baseurl = http://yum.mariadb.org/5.5/centos6-amd64
+baseurl = http://yum.mariadb.org/10.0/centos6-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 enabled=1
