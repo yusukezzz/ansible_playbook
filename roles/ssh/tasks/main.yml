@@ -1,6 +1,13 @@
 ---
+- name: create ssh dir
+  file: >
+    path=/home/{{ user_name }}/.ssh
+    state=directory
+    mode=0700
+    owner={{ user_name }}
+    group={{ user_name }}
 - name: copy ssh files
-  copy: src=~/.ssh/{{ item }} dest=/home/vagrant/.ssh/{{ item }} owner={{ user_name }} group={{ user_name }} mode=700
+  copy: src=~/.ssh/{{ item }} dest=/home/{{ user_name }}/.ssh/{{ item }} owner={{ user_name }} group={{ user_name }} mode=700
   with_items:
     ssh_files
 - name: add ssh authorized keys

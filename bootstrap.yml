@@ -1,0 +1,15 @@
+---
+- hosts: conoha
+  user: root
+  gather_facts: false
+  pre_tasks:
+    - name: create group
+      group: name={{ user_name }} state=present
+    - name: create user
+      user: >
+        name={{ user_name }} group={{ user_name }}
+        password={{ user_pass }}
+        state=present
+  roles:
+    - common
+    - ssh

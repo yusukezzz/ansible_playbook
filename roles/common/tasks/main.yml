@@ -1,2 +1,27 @@
 ---
-- include: packages.yml
+- name: install common packages
+  action: yum name={{ item }} state=present
+  with_items:
+    - bash-completion
+    - git
+    - ntp
+    - vim
+    - libselinux-python
+- name: switch timezone to JST
+  copy: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime
+- name: config ntpd
+  copy: src=ntp.conf dest=/etc/ntp.conf
+  notify: restart ntpd
+- name: config iptables
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables backup=yes
+  notify: restart iptables
+- name: stop and disable unused services
+  service: name={{ item }} state=stopped enabled=no
+  ignore_errors: yes
+  with_items:
+    - auditd
+    - lvm2-monitor
+    - mdmonitor
+    - netfs
+    - nfslock
+    - postfix
