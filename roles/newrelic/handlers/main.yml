@@ -1,3 +1,5 @@
 ---
 - name: restart newrelic-sysmond
   service: name=newrelic-sysmond state=restarted enabled=yes
+- name: restart newrelic-daemon
+  service: name=newrelic-daemon state=restarted enabled=yes
