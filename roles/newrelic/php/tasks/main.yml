@@ -20,3 +20,4 @@
   notify:
     - restart nginx
     - restart php-fpm
+    - restart newrelic-daemon
