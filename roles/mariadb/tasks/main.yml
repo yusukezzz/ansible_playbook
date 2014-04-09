@@ -1,6 +1,4 @@
 ---
-- name: install compat-mysql
-  action: yum name=compat-mysql55 enablerepo=remi-test disablerepo=remi state=present
 - name: add mariadb repo
   copy: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo
 - name: install mariadb
