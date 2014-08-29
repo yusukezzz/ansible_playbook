@@ -1,0 +1,3 @@
+---
+- name: install hhvm
+  action: yum name=hhvm state=present

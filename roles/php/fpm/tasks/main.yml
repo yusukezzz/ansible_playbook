@@ -1,6 +1,6 @@
 ---
 - name: install php-fpm
-  action: yum name=php-fpm state=present enablerepo=remi-php55
+  action: yum name=php-fpm state=present enablerepo=remi-php56
 - name: config php-fpm
   copy: src=php-fpm.conf dest=/etc/php-fpm.conf
   notify:

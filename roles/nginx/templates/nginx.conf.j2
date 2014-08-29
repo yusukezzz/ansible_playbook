@@ -42,16 +42,14 @@ http {
         listen      80;
         server_name localhost;
         charset     utf-8;
-        root        /vagrant_data/webapp/public;
+        root        /home/webapp/current/public;
         index       index.php index.html;
         error_page 404 /index.php;
-        if (!-d $request_filename)
-        {
-          rewrite ^/(.*)/$ /$1 permanent;
+        location / {
+          try_files $uri $uri/ /index.php?$args;
         }
         location ~ \.php(.*)$
         {
-          try_files $uri =404;
           include        fastcgi_params;
           fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
           fastcgi_index  index.php;
