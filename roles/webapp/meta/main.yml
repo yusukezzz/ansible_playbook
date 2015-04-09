@@ -4,5 +4,4 @@ dependencies:
   - { role: php }
   - { role: mariadb }
   - { role: nginx }
-  - { role: newrelic/php }
   - { role: memcached }
